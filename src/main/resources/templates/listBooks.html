@@ -65,6 +65,12 @@
 					th:replace="~{fragments/paging :: paging(${bookPage.size}, 
 					             ${currentPage + 1}, '이후', '이후 페이지')}"></a>
 			</li>
+			<li class="page-item"
+				th:classappend="${currentPage == totalPages} ? 'disabled'">
+				<a
+					th:replace="fragments/paging :: paging(
+					             ${bookPage.size}, ${totalPages}, '>>', '끝 페이지')"></a>
+			</li>
 		</ul>
 	</div>
 </body>
