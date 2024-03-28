@@ -11,7 +11,7 @@
 </head>
 <body>
 	<a th:fragment="paging(size, page, tooltip)" th:text=${page}
-		th:class="${page==bookPage.number + 1} ? 'active page-link' : 'page-link'"
+		th:class="page-link"
 		th:href="@{listBooks(size=${size}, page=${page})}"
 		th:title="${tooltip}" rel="tooltip"> [[${page}]] </a>
 </body>

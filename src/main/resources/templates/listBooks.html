@@ -29,12 +29,18 @@
 				</tr>
 			</tbody>
 		</table>
-		<ul th:if="${bookPage.totalPages > 0}" class="pagination">
-			<li class="page-item" th:each="pageNumber : ${pageNumbers}">
+		<ul th:if="${bookPage.totalPages > 0}" class="pagination">		
+		
+		
+			<li class="page-item" 
+  			th:classappend="${pageNumber == bookPage.number + 1} ? 'active'"
+	   		th:each="pageNumber : ${pageNumbers}">
 				<a
 					th:replace="~{fragments/paging :: paging(
 			   ${bookPage.size}, ${pageNumber}, ${pageNumber} + '페이지')}"></a>
 			</li>
+			
+			
 		</ul>
 	</div>
 </body>
