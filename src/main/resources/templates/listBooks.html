@@ -30,6 +30,12 @@
 			</tbody>
 		</table>
 		<ul th:if="${bookPage.totalPages > 0}" class="pagination">
+			<li class="page-item"
+				th:classappend="${currentPage == 1} ? 'disabled'">
+				<a
+					th:replace="fragments/paging :: paging(
+					             ${bookPage.size}, 1, '<<', '첫 페이지')"></a>
+			</li>
 			<li class="page-item font-weight-bold"
 				th:classappend="${currentPage == 1} ? 'disabled'">
 				<a
@@ -41,10 +47,10 @@
 			</li>
 			<li class="page-item"
 				th:classappend="${pageNumber == currentPage} ? 'active'"
-				th:each="pageNumber : ${#numbers.sequence(currentPage > 2 ? 
-                                currentPage - 2 : 1, 
-                                currentPage + 2 < totalPages ? 
-                                currentPage + 2 : totalPages)}">
+				th:each="pageNumber : ${#numbers.sequence(
+				  currentPage > 2 ? currentPage - 2 : 1, 
+				  (currentPage > 2 ? currentPage - 2 : 1) + 4 > totalPages ?
+				  totalPages : (currentPage > 2 ? currentPage - 2 : 1) + 4)}">
 				<a
 					th:replace="~{fragments/paging :: paging(${bookPage.size}, 
 					 ${pageNumber}, ${pageNumber}, ${pageNumber} + '페이지')}"></a>
