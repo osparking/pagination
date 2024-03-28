@@ -34,8 +34,11 @@ public class BookController {
     Page<Book> bookPage = bookService.findPaginated(x);
 
     model.addAttribute("bookPage", bookPage);
+    model.addAttribute("currentPage", bookPage.getNumber() + 1);
 
     int totalPages = bookPage.getTotalPages();
+    
+    model.addAttribute("totalPages", totalPages);
     if (totalPages > 0) {
       List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
           .boxed()
