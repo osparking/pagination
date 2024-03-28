@@ -34,7 +34,7 @@
 				th:classappend="${currentPage == 1} ? 'disabled'">
 				<a
 					th:replace="~{fragments/paging :: paging(${bookPage.size}, 
-					             ${currentPage - 1}, 'Prev', '앞선 페이지')}"></a>
+					             ${currentPage - 1}, '이전', '이전 페이지')}"></a>
 			</li>
 			<li class="page-item disabled" th:if="${currentPage - 2 > 1}">
 				<a class="page-link" href="#">...</a>
@@ -52,6 +52,12 @@
 			<li class="page-item disabled"
 				th:if="${currentPage + 2 < totalPages}">
 				<a class="page-link" href="#">...</a>
+			</li>
+			<li class="page-item font-weight-bold"
+				th:classappend="${currentPage == 1} ? 'disabled'">
+				<a
+					th:replace="~{fragments/paging :: paging(${bookPage.size}, 
+					             ${currentPage + 1}, '이후', '이후 페이지')}"></a>
 			</li>
 		</ul>
 	</div>
