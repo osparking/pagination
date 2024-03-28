@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>서적 목록</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -30,6 +30,15 @@
 			</tbody>
 		</table>
 		<ul th:if="${bookPage.totalPages > 0}" class="pagination">
+			<li class="page-item font-weight-bold"
+				th:classappend="${currentPage == 1} ? 'disabled'">
+				<a
+					th:replace="~{fragments/paging :: paging(${bookPage.size}, 
+					             ${currentPage - 1}, 'Prev', '앞선 페이지')}"></a>
+			</li>
+			<li class="page-item disabled" th:if="${currentPage - 2 > 1}">
+				<a class="page-link" href="#">...</a>
+			</li>
 			<li class="page-item"
 				th:classappend="${pageNumber == currentPage} ? 'active'"
 				th:each="pageNumber : ${#numbers.sequence(currentPage > 2 ? 
@@ -37,8 +46,12 @@
                                 currentPage + 2 < totalPages ? 
                                 currentPage + 2 : totalPages)}">
 				<a
-					th:replace="~{fragments/paging :: paging(
-			   ${bookPage.size}, ${pageNumber}, ${pageNumber} + '페이지')}"></a>
+					th:replace="~{fragments/paging :: paging(${bookPage.size}, 
+					 ${pageNumber}, ${pageNumber}, ${pageNumber} + '페이지')}"></a>
+			</li>
+			<li class="page-item disabled"
+				th:if="${currentPage + 2 < totalPages}">
+				<a class="page-link" href="#">...</a>
 			</li>
 		</ul>
 	</div>
